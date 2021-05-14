@@ -1,0 +1,40 @@
+
+{
+  "project_info": {
+    "project_number": "228930867873",
+    "project_id": "app-progetto-esami",
+    "storage_bucket": "app-progetto-esami.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228930867873:android:8e279a8a59e4ac572996e0",
+        "android_client_info": {
+          "package_name": "com.firebasetestapp.progetto_esami"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "228930867873-8dudlencoo1o9jdalc7og9dd2fj8lggt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6MGrDQezHZihUsSadb9ArLakjK8Y95Jk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "228930867873-8dudlencoo1o9jdalc7og9dd2fj8lggt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
