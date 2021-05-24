@@ -21,7 +21,6 @@ environment:
   sdk: ">=2.12.2 <3.0.0"
 
 dependencies:
-  firebase_core: ^1.1.1
   flutter:
     sdk: flutter
 
@@ -31,6 +30,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   firebase_database: ^7.0.0
+  cloud_firestore: ^1.0.5
+  firebase_core: ^1.1.1
   template_package:
     git:
       url: https://github.com/spiderion/template_package.git

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:template_package/template_package.dart';
 
@@ -20,21 +21,15 @@ class HomeBlock extends TemplateBloc {
         location: "cassino",
         rain: 30,
         pressure: 909,
-        temperature: 27,
+        temperature: 29,
         lpg: 0.6,
         smoke: 0.7,
         alcohol: 14));
-    final weatherReferences = db.reference().child("app-progetto-esami-default-rtdb").child("power");
-    try{
-      await weatherReferences.set({});
-    }catch (error){
-      Fluttertoast.showToast(msg: "error in catch");
-    }
-    final dataOnce = await weatherReferences.once();
-    weatherReferences.onChildChanged.listen((event) {
-      final data = event.snapshot.value;
-      Fluttertoast.showToast(msg: "changed...");
+    await FirebaseFirestore.instance.collection('collectionPath').doc("hello").set({"aia": 'pollo'});
+    FirebaseFirestore.instance.collection('collectionPath').doc("hello").snapshots().listen((event) {
+      Fluttertoast.showToast(msg: 'changed');
     });
+    Fluttertoast.showToast(msg: 'done');
   }
 
   @override
