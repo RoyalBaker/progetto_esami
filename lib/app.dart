@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:progetto_esami/home/home_bloc.dart';
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(()=>HomeBlock(AnalyticsProxy([]))),
+      home: MyHomePage(() => HomeBlock(AnalyticsProxy([]), FirebaseDatabase.instance)),
     );
   }
 }
