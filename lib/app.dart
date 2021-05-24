@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:progetto_esami/home_page.dart';
+import 'package:progetto_esami/home/home_bloc.dart';
+import 'home/home_page.dart';
+import 'package:template_package/analytics/analytics_proxy.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Monitoraggio stazione meteo'),
+      home: MyHomePage(()=>HomeBlock(AnalyticsProxy([]))),
     );
   }
 }
