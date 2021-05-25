@@ -1,35 +1,33 @@
 import 'dart:async';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:progetto_esami/model/weather.dart';
+import 'package:progetto_esami/repositories/weatherrepository.dart';
 import 'package:template_package/template_package.dart';
 
 import 'home_state.dart';
 
 class HomeBlock extends TemplateBloc {
-  final FirebaseDatabase db;
+  final WeatherRepository repository;
   final StreamController weatherDataStateController = StreamController<WeatherDataState>();
 
-  HomeBlock(BaseAnalytics analytics, this.db) : super(analytics) {
+  HomeBlock(BaseAnalytics analytics, this.repository) : super(analytics) {
     registerStreams([weatherDataStateController.stream]);
     updateUi();
   }
 
   Future updateUi() async {
-    weatherDataStateController.sink.add(WeatherDataState(
-        humidity: 70,
-        location: "cassino",
-        rain: 30,
-        pressure: 909,
-        temperature: 29,
-        lpg: 0.6,
-        smoke: 0.7,
-        alcohol: 14));
-    await FirebaseFirestore.instance.collection('collectionPath').doc("hello").set({"aia": 'pollo'});
-    FirebaseFirestore.instance.collection('collectionPath').doc("hello").snapshots().listen((event) {
-      Fluttertoast.showToast(msg: 'changed');
+    repository.registerWeatherEvents().listen((List<WeatherDay> weatherDays) {
+      weatherDataStateController.sink.add(WeatherDataState(
+          humidity: weatherDays.first.humidity,
+          location: weatherDays.first.location,
+          rain: weatherDays.first.rain,
+          pressure: weatherDays.first.pressure,
+          temperature: weatherDays.first.temperature,
+          lpg: weatherDays.first.lpg,
+          smoke: weatherDays.first.smoke,
+          alcohol: weatherDays.first.alcohol));
+      ;
     });
-    Fluttertoast.showToast(msg: 'done');
   }
 
   @override

@@ -60,18 +60,18 @@ class _MyHomePageState extends BaseState<MyHomePage, TemplateBloc> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                columnValue("pressure", weatherDataState.getAlcohol()),
-                columnValue("windth", weatherDataState.getHumidity()),
-                columnValue("gas", weatherDataState.getLpg()),
+                columnValue("Alcohol", weatherDataState.getAlcohol()),
+                columnValue("Humidity", weatherDataState.getHumidity()),
+                columnValue("Lpg", weatherDataState.getLpg()),
               ],
             ),
             SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                columnValue("pres", weatherDataState.getPressure()),
-                columnValue("with", weatherDataState.getRain()),
-                columnValue("gs", weatherDataState.getSmoke()),
+                columnValue("Pressure", weatherDataState.getPressure()),
+                columnValue("Rain", weatherDataState.getRain()),
+                columnValue("Smoke", weatherDataState.getSmoke()),
               ],
             ),
           ],
@@ -99,7 +99,7 @@ class _MyHomePageState extends BaseState<MyHomePage, TemplateBloc> {
       children: [
         SizedBox(height: 30),
         Text(location, style: TextStyle(fontSize: 40, color: Colors.white)),
-        Text(temperature, textAlign: TextAlign.start, style: TextStyle(fontSize: 200, color: Colors.white))
+        Text(temperature + "°", textAlign: TextAlign.start, style: TextStyle(fontSize: 200, color: Colors.white))
       ],
     );
   }
