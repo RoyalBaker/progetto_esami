@@ -7,6 +7,7 @@ class WeatherDay {
   final double lpg;
   final double smoke;
   final int alcohol;
+  final bool enabled;
 
   WeatherDay(
       {required this.humidity,
@@ -16,18 +17,19 @@ class WeatherDay {
       required this.temperature,
       required this.lpg,
       required this.smoke,
-      required this.alcohol});
+      required this.alcohol,
+      required this.enabled});
 
   factory WeatherDay.fromMap(Map<String, dynamic> mapJson) {
     return WeatherDay(
-      humidity: mapJson["humid"],
-      rain: mapJson["rain"],
-      location: mapJson["location"],
-      pressure: mapJson["pressure"],
-      temperature: (mapJson["temp"] as int).toDouble(),
-      lpg: mapJson["lpg"],
-      smoke: mapJson["smoke"],
-      alcohol: mapJson["alcohol"]
-    );
+        humidity: mapJson["humid"],
+        rain: mapJson["rain"],
+        location: mapJson["location"],
+        pressure: mapJson["pressure"],
+        temperature: (mapJson["temp"] as int).toDouble(),
+        lpg: mapJson["lpg"],
+        smoke: mapJson["smoke"],
+        alcohol: mapJson["alcohol"],
+        enabled: mapJson["enabled"]);
   }
 }

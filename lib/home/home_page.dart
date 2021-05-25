@@ -7,6 +7,8 @@ import 'package:progetto_esami/home/home_state.dart';
 import 'package:template_package/base_widget/base_widget.dart';
 import 'package:template_package/template_bloc/template_bloc.dart';
 
+import 'home_event.dart';
+
 class MyHomePage extends BaseWidget {
   MyHomePage(BaseBloc Function() getBloc) : super(getBloc);
 
@@ -38,6 +40,9 @@ class _MyHomePageState extends BaseState<MyHomePage, TemplateBloc> {
                   children: <Widget>[
                     topWidget(snapshot.data!.getLocation(), snapshot.data!.getTemperature()),
                     Spacer(),
+                    Switch(onChanged: (value){
+                      bloc.addEvent(IsEnabledChangeEvent(value));
+                    }, value: snapshot.data!.isEnabled()),
                     bottomWidget(snapshot.data!),
                   ],
                 ),

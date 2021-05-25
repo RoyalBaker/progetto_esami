@@ -9,6 +9,7 @@ class WeatherDataState extends BaseBlocDataState {
   final double lpg;
   final double smoke;
   final int alcohol;
+  final bool enabled;
 
   WeatherDataState(
       {required this.humidity,
@@ -18,7 +19,8 @@ class WeatherDataState extends BaseBlocDataState {
       required this.temperature,
       required this.lpg,
       required this.smoke,
-      required this.alcohol});
+      required this.alcohol,
+      required this.enabled});
 
   String getHumidity() => humidity.toString();
 
@@ -35,4 +37,6 @@ class WeatherDataState extends BaseBlocDataState {
   String getSmoke() => smoke.toString();
 
   String getAlcohol() => alcohol.toString();
+
+  bool isEnabled() => this.enabled;
 }

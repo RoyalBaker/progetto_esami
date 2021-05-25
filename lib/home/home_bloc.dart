@@ -4,6 +4,7 @@ import 'package:progetto_esami/model/weather.dart';
 import 'package:progetto_esami/repositories/weatherrepository.dart';
 import 'package:template_package/template_package.dart';
 
+import 'home_event.dart';
 import 'home_state.dart';
 
 class HomeBlock extends TemplateBloc {
@@ -25,13 +26,21 @@ class HomeBlock extends TemplateBloc {
           temperature: weatherDays.first.temperature,
           lpg: weatherDays.first.lpg,
           smoke: weatherDays.first.smoke,
-          alcohol: weatherDays.first.alcohol));
+          alcohol: weatherDays.first.alcohol,
+          enabled: weatherDays.first.enabled
+      ));
+
       ;
     });
   }
 
   @override
-  void onUiDataChange(BaseBlocEvent event) {}
+  void onUiDataChange(BaseBlocEvent event) {
+    if (event is IsEnabledChangeEvent ){
+      repository.changeEnableValue(event.isEnabled);
+    }
+
+  }
 
   @override
   dispose() {
