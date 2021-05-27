@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:lottie/lottie.dart';
 import 'package:base_bloc/bloc/base_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -17,6 +17,7 @@ class MyHomePage extends BaseWidget {
 }
 
 class _MyHomePageState extends BaseState<MyHomePage, TemplateBloc> {
+
   @override
   Widget build(BuildContext context) {
     return getNameWidget();
@@ -30,26 +31,55 @@ class _MyHomePageState extends BaseState<MyHomePage, TemplateBloc> {
             return Scaffold(body: Container());
           }
           return Scaffold(
-            backgroundColor: Colors.lime,
-            body: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    topWidget(snapshot.data!.getLocation(), snapshot.data!.getTemperature()),
-                    Spacer(),
-                    Switch(onChanged: (value){
-                      bloc.addEvent(IsEnabledChangeEvent(value));
-                    }, value: snapshot.data!.isEnabled()),
-                    bottomWidget(snapshot.data!),
-                  ],
-                ),
-              ),
+            backgroundColor: Colors.black38,
+            body: Stack(
+              children: [
+                Positioned(
+                    top: 0,
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Image.network(
+                     snapshot.data!.getBackgroundUrl(),
+                      fit: BoxFit.fill,
+                    )),
+                body(snapshot),
+              ],
             ),
           );
         });
+  }
+
+  SafeArea body(AsyncSnapshot<WeatherDataState> snapshot) {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            topWidget(snapshot.data!.getLocation(), snapshot.data!.getTemperature()),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Lottie.network(
+                  snapshot.data!.getAnimationUrl(),
+                  width: MediaQuery.of(context).size.width * 0.60,
+                  height: MediaQuery.of(context).size.height * 0.25,
+                ),
+              ],
+            ),
+            Spacer(),
+            Switch(
+                onChanged: (value) {
+                  bloc.addEvent(IsEnabledChangeEvent(value));
+                },
+                value: snapshot.data!.isEnabled()),
+            bottomWidget(snapshot.data!),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget bottomWidget(WeatherDataState weatherDataState) {
@@ -104,7 +134,8 @@ class _MyHomePageState extends BaseState<MyHomePage, TemplateBloc> {
       children: [
         SizedBox(height: 30),
         Text(location, style: TextStyle(fontSize: 40, color: Colors.white)),
-        Text(temperature + "°", textAlign: TextAlign.start, style: TextStyle(fontSize: 200, color: Colors.white))
+        Text(temperature + "°",
+            textAlign: TextAlign.start, style: TextStyle(fontSize: 200, color: Colors.white))
       ],
     );
   }
