@@ -7,5 +7,5 @@ class Rain extends WeatherType {
   }
 
   @override
-  bool isInTypeRange(int rainIntensity) => rainIntensity > 100 && rainIntensity < 500;
+  bool isInTypeRange(int rainIntensity) => rainIntensity >= 100 && rainIntensity < 500;
 }

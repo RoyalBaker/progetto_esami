@@ -17,7 +17,6 @@ class MyHomePage extends BaseWidget {
 }
 
 class _MyHomePageState extends BaseState<MyHomePage, TemplateBloc> {
-
   @override
   Widget build(BuildContext context) {
     return getNameWidget();
@@ -40,7 +39,7 @@ class _MyHomePageState extends BaseState<MyHomePage, TemplateBloc> {
                     left: 0,
                     right: 0,
                     child: Image.network(
-                     snapshot.data!.getBackgroundUrl(),
+                      snapshot.data!.getBackgroundUrl(),
                       fit: BoxFit.fill,
                     )),
                 body(snapshot),
